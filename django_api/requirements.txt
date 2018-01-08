@@ -1,2 +1,4 @@
 Django>=2.0.1,<2.0.99
 djangorestframework>=3.7.7,<3.7.99
+psycopg2>=2.7.3.2,<2.8
+ipython

@@ -8,3 +8,16 @@ services:
       - .:/django_api/code
     ports:
       - "8000:8000"
+    links:
+      - "postgres"
+  postgres:
+    image: postgres:9
+    environment:
+      POSTGRES_PASSWORD: asdqwe123
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    links:
+      - "postgres"
