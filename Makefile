@@ -24,13 +24,13 @@ api_logs:
 # Tool belt
 # ----------------------------------------------------------------------------
 migrate:
-	docker-compose run django_api python reclameaqui/manage.py migrate
+	docker-compose run django_api python manage.py migrate
 
 make_migrations:
-	docker-compose run django_api python reclameaqui/manage.py makemigrations
+	docker-compose run django_api python manage.py makemigrations
 
 create_superuser:
-	docker-compose run django_api python reclameaqui/manage.py createsuperuser --username admin
+	docker-compose run django_api python manage.py createsuperuser --username admin
 
 api_shell:
-	docker-compose run django_api python reclameaqui/manage.py shell
+	docker-compose run django_api python manage.py shell
