@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  django:
-    build: .
+  django_api:
+    build: django_api
     command: python3 reclameaqui/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/django_api/code
     ports:
       - "8000:8000"
