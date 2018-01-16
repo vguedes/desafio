@@ -42,4 +42,12 @@ class CompanySerializer(serializers.ModelSerializer):
 class ComplainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Complain
-        fields = ('id', 'consumer', 'city', 'company', 'title', 'description')
+        fields = (
+            'id',
+            'consumer',
+            'city',
+            'company',
+            'datetime',
+            'title',
+            'description'
+        )
