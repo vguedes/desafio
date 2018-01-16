@@ -20,7 +20,7 @@ class Country(models.Model):
 class State(models.Model):
     """Model definition for State."""
 
-    country = models.ForeignKey(Country, on_delete='cascade')
+    country = models.ForeignKey(Country, related_name='states', on_delete='cascade')
     name = models.CharField(max_length=254)
 
     class Meta:
@@ -37,7 +37,7 @@ class State(models.Model):
 class City(models.Model):
     """Model definition for City."""
 
-    state = models.ForeignKey(State, on_delete='cascade')
+    state = models.ForeignKey(State, related_name='cities', on_delete='cascade')
     name = models.CharField(max_length=254)
 
     class Meta:
@@ -76,7 +76,11 @@ class Consumer(models.Model):
 class Company(models.Model):
     """Model definition for Company."""
 
-    city = models.ForeignKey(City, on_delete='cascade')
+    city = models.ForeignKey(
+        City,
+        related_name='companies',
+        on_delete='cascade'
+    )
     name = models.CharField(max_length=254)
 
     class Meta:
@@ -92,9 +96,21 @@ class Company(models.Model):
 class Complain(models.Model):
     """Model definition for Complain."""
 
-    consumer = models.ForeignKey(Consumer, on_delete='cascade')
-    city = models.ForeignKey(City, on_delete='cascade')
-    company = models.ForeignKey(Company, on_delete='cascade')
+    consumer = models.ForeignKey(
+        Consumer,
+        related_name='complains',
+        on_delete='cascade'
+    )
+    city = models.ForeignKey(
+        City,
+        related_name='complains',
+        on_delete='cascade'
+    )
+    company = models.ForeignKey(
+        Company,
+        related_name='complains',
+        on_delete='cascade'
+    )
     datetime = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=254)
     description = models.TextField()
