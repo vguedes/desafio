@@ -143,4 +143,3 @@ class Complain(models.Model):
             self.ellipsed_title,
             self.company
         )
-

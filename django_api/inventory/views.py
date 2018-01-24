@@ -1,3 +1,6 @@
+"""API Views"""
+
+from rest_framework import viewsets
 from inventory.models import (
     Country,
     State,
@@ -14,7 +17,6 @@ from inventory.serializers import (
     CompanySerializer,
     ComplainSerializer
 )
-from rest_framework import viewsets
 
 
 class CountryViewSet(viewsets.ModelViewSet):
