@@ -20,37 +20,35 @@ from inventory.serializers import (
 )
 
 
-class CountryViewSet(viewsets.ModelViewSet):
+class IsAuthenticated():
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class CountryViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = CountrySerializer
     queryset = Country.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
 
 
-class StateViewSet(viewsets.ModelViewSet):
+class StateViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = StateSerializer
     queryset = State.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
 
 
-class CityViewSet(viewsets.ModelViewSet):
+class CityViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = CitySerializer
     queryset = City.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
 
 
-class ConsumerViewSet(viewsets.ModelViewSet):
+class ConsumerViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = ConsumerSerializer
     queryset = Consumer.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
 
 
-class CompanyViewSet(viewsets.ModelViewSet):
+class CompanyViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = CompanySerializer
     queryset = Company.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
 
 
-class ComplainViewSet(viewsets.ModelViewSet):
+class ComplainViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = ComplainSerializer
     queryset = Complain.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
