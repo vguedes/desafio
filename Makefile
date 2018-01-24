@@ -3,6 +3,7 @@
 help:
 	@echo "Options"
 	@echo
+	@echo "build: build project"
 	@echo "runservices: docker-compose up in detached mode"
 	@echo "stopservices: docker-compose stop"
 	@echo "api_logs: view api logs"
@@ -11,6 +12,9 @@ help:
 	@echo "make_migrations: create migrations for django api"
 	@echo "create_superuser: creates admin user"
 	@echo "api_shell: start django shell"
+
+build:
+	docker-compose build
 
 runservices:
 	docker-compose up -d
