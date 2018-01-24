@@ -16,12 +16,16 @@ from inventory.serializers import (
 )
 from rest_framework import viewsets
 from rest_framework import permissions
+from django_filters import rest_framework as filters
+# from django_filters.rest_framework import DjangoFilterBackend, DateFromToRangeFilter
 
 
 class CountryViewSet(viewsets.ModelViewSet):
     serializer_class = CountrySerializer
     queryset = Country.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name',)
 
 
 class StateViewSet(viewsets.ModelViewSet):
@@ -48,7 +52,27 @@ class CompanyViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
 
+class ComplainFilter(filters.FilterSet):
+    min_date = filters.DateFromToRangeFilter(name='datetime', lookup_expr='gte')
+    max_date = filters.DateFromToRangeFilter(name='datetime', lookup_expr='lte')
+
+    class Meta:
+        model = Complain
+        fields = [
+            'consumer',
+            'city',
+            'company',
+            'min_date',
+            'max_date',
+            'title',
+            'description'
+        ]
+
+
+
 class ComplainViewSet(viewsets.ModelViewSet):
     serializer_class = ComplainSerializer
     queryset = Complain.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
+    filter_backends = (filters.DateFromToRangeFilter,)
+    filter_class = ComplainFilter
