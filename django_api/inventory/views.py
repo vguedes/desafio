@@ -1,3 +1,7 @@
+"""API Views"""
+
+from rest_framework import viewsets
+from rest_framework import permissions
 from inventory.models import (
     Country,
     State,
@@ -14,10 +18,13 @@ from inventory.serializers import (
     CompanySerializer,
     ComplainSerializer
 )
+<<<<<<< HEAD
 from rest_framework import viewsets
 from rest_framework import permissions
 from django_filters import rest_framework as filters
 # from django_filters.rest_framework import DjangoFilterBackend, DateFromToRangeFilter
+=======
+>>>>>>> f1488175b93eb5ab89c56fb8e47e8a29e37c85d5
 
 
 class CountryViewSet(viewsets.ModelViewSet):
