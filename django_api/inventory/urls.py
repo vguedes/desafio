@@ -17,7 +17,8 @@ urlpatterns = [
         include('rest_framework.urls', namespace='rest_framework')
     ),
     url(
-        '^complains/by_range/(?P<created_min>.+)/(?P<created_max>.+)/$',
-        views.CustomComplainListViewByCreatedRange.as_view()
+        '^complains/by_range/(?P<created_min>)/(?P<created_max>)/$',
+        views.CustomComplainListViewByCreatedRange.as_view(),
+        name='custom-complain-listing'
     )
 ]
