@@ -22,6 +22,9 @@ from inventory.models import (
     Complain
 )
 
+### IMPORTANT ###
+# Model atributes testing enforced by Meta class (fields attribute) of serializers
+
 
 class CountryModelTestCase(TestCase):
     def test_model(self):
