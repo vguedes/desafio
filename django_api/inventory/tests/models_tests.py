@@ -18,8 +18,7 @@ from inventory.models import (
     Country,
     State,
     City,
-    Company,
-    Complain
+    Company
 )
 
 ### IMPORTANT ###
@@ -29,44 +28,44 @@ from inventory.models import (
 class CountryModelTestCase(TestCase):
     def test_model(self):
         countries_to_create = 2
-        countries = CountryFactory.create_batch(countries_to_create)
+        CountryFactory.create_batch(countries_to_create)
 
-        self.assertEquals(countries_to_create, Country.objects.count())
+        self.assertEqual(countries_to_create, Country.objects.count())
 
 
 class StateModelTestCase(TestCase):
     def test_country_relation(self):
         state = StateFactory.create()
 
-        self.assertEquals(isinstance(state.country, Country), True)
+        self.assertEqual(isinstance(state.country, Country), True)
 
 
 class CityModelTestCase(TestCase):
     def test_state_relation(self):
         city = CityFactory.create()
 
-        self.assertEquals(isinstance(city.state, State), True)
+        self.assertEqual(isinstance(city.state, State), True)
 
 
 class ConsumerModelTestCase(TestCase):
     def test_model(self):
         consumers_to_create = 2
-        consumers = ConsumerFactory.create_batch(consumers_to_create)
+        ConsumerFactory.create_batch(consumers_to_create)
 
-        self.assertEquals(consumers_to_create, Consumer.objects.count())
+        self.assertEqual(consumers_to_create, Consumer.objects.count())
 
 
 class CompanyModelTestCase(TestCase):
     def test_city_relation(self):
         company = CompanyFactory.create()
 
-        self.assertEquals(isinstance(company.city, City), True)
+        self.assertEqual(isinstance(company.city, City), True)
 
 
 class ComplainModelTestCase(TestCase):
     def test_fk_relations(self):
         complain = ComplainFactory.create()
 
-        self.assertEquals(isinstance(complain.consumer, Consumer), True)
-        self.assertEquals(isinstance(complain.city, City), True)
-        self.assertEquals(isinstance(complain.company, Company), True)
+        self.assertEqual(isinstance(complain.consumer, Consumer), True)
+        self.assertEqual(isinstance(complain.city, City), True)
+        self.assertEqual(isinstance(complain.company, Company), True)
