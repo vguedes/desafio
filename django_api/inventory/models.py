@@ -11,6 +11,7 @@ class Country(models.Model):
 
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
+        ordering = ['-id']
 
     def __str__(self):
         """Unicode representation of Country."""
@@ -28,6 +29,7 @@ class State(models.Model):
 
         verbose_name = 'State'
         verbose_name_plural = 'States'
+        ordering = ['-id']
 
     def __str__(self):
         """Unicode representation of State."""
@@ -45,6 +47,7 @@ class City(models.Model):
 
         verbose_name = 'City'
         verbose_name_plural = 'Cities'
+        ordering = ['-id']
 
     def __str__(self):
         """Unicode representation of City."""
@@ -66,6 +69,7 @@ class Consumer(models.Model):
 
         verbose_name = 'Consumer'
         verbose_name_plural = 'Consumers'
+        ordering = ['-id']
 
     def __str__(self):
         """Unicode representation of Consumer."""
@@ -88,6 +92,7 @@ class Company(models.Model):
 
         verbose_name = 'Company'
         verbose_name_plural = 'Companies'
+        ordering = ['-id']
 
     def __str__(self):
         """Unicode representation of Company."""
@@ -136,6 +141,7 @@ class Complain(models.Model):
 
         verbose_name = 'Complain'
         verbose_name_plural = 'Complains'
+        ordering = ['-id']
 
     def __str__(self):
         """Unicode representation of Complain."""
