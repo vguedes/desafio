@@ -1,7 +1,10 @@
 """API Views"""
 
 from rest_framework import viewsets
-from rest_framework import permissions
+from rest_framework import (
+    permissions,
+    generics
+)
 from django_filters import rest_framework as filters
 from inventory.models import (
     Country,
@@ -84,3 +87,15 @@ class ComplainViewSet(viewsets.ModelViewSet):
     serializer_class = ComplainSerializer
     queryset = Complain.objects.all()
     filter_class = ComplainFilter
+
+
+class CustomComplainListViewByCreatedRange(generics.ListAPIView):
+    serializer_class = ComplainSerializer
+
+    def get_queryset(self):
+        created_min = self.kwargs['created_min']
+        created_max = self.kwargs['created_max']
+        return Complain.objects.filter(
+            created__gte=created_min,
+            created__lte=created_max,
+        )
