@@ -83,13 +83,13 @@ class ComplainFilter(filters.FilterSet):
 
 
 
-class ComplainViewSet(viewsets.ModelViewSet):
+class ComplainViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = ComplainSerializer
     queryset = Complain.objects.all()
     filter_class = ComplainFilter
 
 
-class CustomComplainListViewByCreatedRange(generics.ListAPIView):
+class CustomComplainListViewByCreatedRange(IsAuthenticated, generics.ListAPIView):
     serializer_class = ComplainSerializer
 
     def get_queryset(self):
