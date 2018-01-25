@@ -9,6 +9,7 @@ help:
 	@echo "api_logs: view api logs"
 	@echo "----------------------------------------------------"
 	@echo "migrate: migrate django api"
+	@echo "test: test django api"
 	@echo "make_migrations: create migrations for django api"
 	@echo "create_superuser: creates admin user"
 	@echo "api_shell: start django shell"
@@ -29,6 +30,9 @@ api_logs:
 # ----------------------------------------------------------------------------
 migrate:
 	docker-compose run django_api python manage.py migrate
+
+test:
+	docker-compose run django_api python manage.py test
 
 make_migrations:
 	docker-compose run django_api python manage.py makemigrations
