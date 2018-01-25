@@ -28,23 +28,25 @@ class IsAuthenticated():
 class CountryViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = CountrySerializer
     queryset = Country.objects.all()
-    filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('name',)
 
 
 class StateViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = StateSerializer
     queryset = State.objects.all()
+    filter_fields = ('name', 'country__name')
 
 
 class CityViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = CitySerializer
     queryset = City.objects.all()
+    filter_fields = ('name', 'state__name', 'state__country__name')
 
 
 class ConsumerViewSet(IsAuthenticated, viewsets.ModelViewSet):
     serializer_class = ConsumerSerializer
     queryset = Consumer.objects.all()
+    filter_fields = ('name', 'email')
 
 
 class CompanyViewSet(IsAuthenticated, viewsets.ModelViewSet):
@@ -53,8 +55,12 @@ class CompanyViewSet(IsAuthenticated, viewsets.ModelViewSet):
 
 
 class ComplainFilter(filters.FilterSet):
-    min_date = filters.DateFromToRangeFilter(name='datetime', lookup_expr='gte')
-    max_date = filters.DateFromToRangeFilter(name='datetime', lookup_expr='lte')
+    created = filters.DateFilter()
+    created_year = filters.NumberFilter(name='created', lookup_expr='year')
+    created_month = filters.NumberFilter(name='created', lookup_expr='month')
+    created_day = filters.NumberFilter(name='created', lookup_expr='day')
+    created_min = filters.DateFilter(name='created', lookup_expr='gte')
+    created_max = filters.DateFilter(name='created', lookup_expr='lte')
 
     class Meta:
         model = Complain
@@ -62,8 +68,12 @@ class ComplainFilter(filters.FilterSet):
             'consumer',
             'city',
             'company',
-            'min_date',
-            'max_date',
+            'created',
+            'created_year',
+            'created_month',
+            'created_day',
+            'created_min',
+            'created_max',
             'title',
             'description'
         ]
@@ -73,5 +83,4 @@ class ComplainFilter(filters.FilterSet):
 class ComplainViewSet(viewsets.ModelViewSet):
     serializer_class = ComplainSerializer
     queryset = Complain.objects.all()
-    filter_backends = (filters.DateFromToRangeFilter,)
     filter_class = ComplainFilter

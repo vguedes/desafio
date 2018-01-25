@@ -111,7 +111,7 @@ class Complain(models.Model):
         related_name='complains',
         on_delete='cascade'
     )
-    datetime = models.DateTimeField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=254)
     description = models.TextField()
 
