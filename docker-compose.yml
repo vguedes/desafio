@@ -3,13 +3,16 @@ version: '3'
 services:
   django_api:
     build: django_api
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind 0.0.0.0:8000 --access-logfile /var/log/gunicorn.log reclameaqui.wsgi
+    # command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - "./django_api:/code"
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     links:
       - "postgres"
+    environment:
+      - VIRTUAL_HOST=apiservers
   postgres:
     image: postgres:9
     environment:
@@ -21,3 +24,12 @@ services:
       - 8081:8080
     links:
       - "postgres"
+  nginx:
+    build: nginx
+    links:
+      - "django_api"
+    ports:
+      - "8888:80"
+    volumes:
+      - "./django_api/static:/static"
+      - "./nginx/apiconfig:/etc/nginx/nginx.conf"

@@ -1,9 +1,10 @@
-Django>=2.0.1,<2.0.99
-djangorestframework>=3.7.7,<3.7.99
+Django>=2.0.1,<2.1
+djangorestframework>=3.7.7,<3.8
 psycopg2>=2.7.3.2,<2.8
 factory_boy>=2.9.2,<2.10
 django-rest-framework>=0.1.0,<0.2
 django-filter>=1.1.0,<1.2
 freezegun>=0.3.9,<0.4
+gunicorn>=19.7.1,<19.8
 ipdb
 ipython
