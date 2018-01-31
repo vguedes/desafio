@@ -4,8 +4,9 @@ help:
 	@echo "Options"
 	@echo
 	@echo "build: build project"
-	@echo "runservices: docker-compose up in detached mode"
-	@echo "stopservices: docker-compose stop"
+	@echo "run: docker-compose up in atached mode"
+	@echo "daemon: docker-compose up in daemon mode"
+	@echo "stop: docker-compose stop"
 	@echo "api_logs: view api logs"
 	@echo "----------------------------------------------------"
 	@echo "migrate: migrate django api"
@@ -17,10 +18,13 @@ help:
 build:
 	docker-compose build
 
-runservices:
-	docker-compose up -d
+run:
+	docker-compose up --scale django_api=5
 
-stopservices:
+daemon:
+	docker-compose up -d --scale django_api=5
+
+stop:
 	docker-compose stop
 
 api_logs:
