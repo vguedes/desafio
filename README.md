@@ -1,5 +1,7 @@
 **Processo seletivo Reclame Aqui**
 
+USE  **make run** TO START THE CONTAINERS!!!!!
+
 ## NoSQL
 
 Django does not have a great NoSQL support, so I'll implement a mid-tier service that receives raw complains and a worker that consumes this database and inserts it's data to django models.
